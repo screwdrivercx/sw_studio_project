@@ -1,6 +1,6 @@
 ﻿@model Root
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
     var i = 1;
 }
 
@@ -10,13 +10,13 @@
     
 </div>
 <div class="container my-5">
-    <h4>รายชื่อห้องปฏิบัติการ</h4>
-    <table class="table mt-3">
+    <h1 class="display-4">Room List</h1>
+    <table class="table mt-4">
         <thead>
             <tr>
                 <th>#</th>
-                <th>ห้องปฏิบัติการ</th>
-                <th>หมายเลขห้องปฏิบัติการ</th>
+                <th>room</th>
+                <th>room number</th>
                 <th></th>
             </tr>
         </thead>
@@ -28,10 +28,10 @@
                         @i
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => room.name)
+                        @room.name
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => room.number)
+                        @room.number
                     </td>
                     <td>
                         <button class="btn btn-success">เลือก</button>

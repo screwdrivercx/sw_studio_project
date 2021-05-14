@@ -21,9 +21,7 @@ namespace sw_studio_project.Controllers
 
         public IActionResult Index()
         {
-            var jsonstring = System.IO.File.ReadAllText("./rooms.json");
-            var jsonObj = JsonConvert.DeserializeObject<Root>(jsonstring);
-            
+            var jsonObj = Read();
             return View(jsonObj);
         }
 
@@ -38,8 +36,13 @@ namespace sw_studio_project.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        /*public JsonResult RoomDetails(){
-            
-        }*/
+        public Root Read()
+        {
+            return JsonConvert.DeserializeObject<Root>(System.IO.File.ReadAllText("./rooms.json"));
+        }
+        public void Write(Root model)
+        {
+            System.IO.File.WriteAllText("./rooms.json", JsonConvert.SerializeObject(model));
+        }
     }
 }
