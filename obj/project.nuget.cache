@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "U6KFTrZ6o6z6Aw202DwfwZJqJDtSKfLn31UoTG74TJFerpyl7hBps7dTk/1nZcP9pStjvo1ewZxbudmlQ7Prlg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\sw_studio_project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Nai\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
