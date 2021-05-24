@@ -15634,6 +15634,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\Views\\Account\\register.cshtml",
+      "TargetPath": "Views\\Account\\register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -15641,6 +15646,11 @@
     {
       "FilePath": "c:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\Views\\Account\\Login.cshtml",
+      "TargetPath": "Views\\Account\\Login.cshtml",
       "FileKind": "mvc"
     },
     {

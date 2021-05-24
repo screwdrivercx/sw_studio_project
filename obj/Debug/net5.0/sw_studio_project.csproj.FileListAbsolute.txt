@@ -40,3 +40,6 @@ C:\Users\Nai\Documents\GitHub\sw_studio_project\obj\Debug\net5.0\sw_studio_proje
 C:\Users\Nai\Documents\GitHub\sw_studio_project\obj\Debug\net5.0\sw_studio_project.csproj.CopyComplete
 C:\Users\Nai\Documents\GitHub\sw_studio_project\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Nai\Documents\GitHub\sw_studio_project\bin\Debug\net5.0\rooms.json
+C:\Users\Nai\Documents\GitHub\sw_studio_project\bin\Debug\net5.0\users.json
+C:\Users\Nai\Documents\GitHub\sw_studio_project\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\Nai\Documents\GitHub\sw_studio_project\obj\Debug\net5.0\Razor\Views\Account\register.cshtml.g.cs

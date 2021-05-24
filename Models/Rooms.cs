@@ -6,7 +6,7 @@ namespace sw_studio_project.Models{
         public int number {get; set;}
     }
 
-    public class Root{
+    public class Rooms{
         public List<Room> rooms {get; set;}
     }
 }

@@ -1,0 +1,53 @@
+<style>
+    
+.btn-dark-blue {
+  background: #7474BF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #348AC7, #7474BF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #348AC7, #7474BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #fff;
+}
+.btn-dark-blue:hover {
+  background: #7474BF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #348AC7, #7474BF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #348AC7, #7474BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: aliceblue;
+}
+
+.btn-rounded{
+  border-radius: 35px;
+}
+
+</style>
+
+<div class="card mt-5 col-md-6 offset-md-3">
+    <h5 class="card-header">Create account</h5>
+    <div class="card-body">
+        <form asp-action="Register" method="post">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" required/>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" required/>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-dark-blue btn-rounded">
+                    Sign Up
+                </button>
+                <a asp-controller="Account" asp-action="Login" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="text-center mt-3">
+    Already have an account? <a asp-controller="Account" asp-action="Login"><u>Log In</u></a>
+</div>

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using sw_studio_project.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace sw_studio_project.Controllers
 {
@@ -19,12 +21,14 @@ namespace sw_studio_project.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
-            var jsonObj = Read();
-            return View(jsonObj);
+            var rooms = Read();
+            return View(rooms);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Privacy()
         {
             return View();
@@ -36,11 +40,11 @@ namespace sw_studio_project.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public Root Read()
+        public Rooms Read()
         {
-            return JsonConvert.DeserializeObject<Root>(System.IO.File.ReadAllText("./rooms.json"));
+            return JsonConvert.DeserializeObject<Rooms>(System.IO.File.ReadAllText("./rooms.json"));
         }
-        public void Write(Root model)
+        public void Write(Rooms model)
         {
             System.IO.File.WriteAllText("./rooms.json", JsonConvert.SerializeObject(model));
         }
