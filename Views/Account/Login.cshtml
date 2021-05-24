@@ -1,0 +1,43 @@
+<style>
+    
+.btn-dark-blue {
+  background: #7474BF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #348AC7, #7474BF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #348AC7, #7474BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #fff;
+}
+.btn-dark-blue:hover {
+  background: #7474BF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #348AC7, #7474BF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #348AC7, #7474BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: aliceblue;
+}
+
+.btn-rounded{
+  border-radius: 35px;
+}
+
+</style>
+    <div class="card mt-5 col-md-6 offset-md-3">
+    <h5 class="card-header">Log in</h5>
+    <div class="card-body">
+        <form asp-action="Login" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-dark-blue btn-rounded">
+                    Log In
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="text-center mt-3">
+    <p> Don't have an account? <a asp-action="Register"><u>Sign Up</u></a></p>
+</div>

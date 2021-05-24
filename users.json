@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "firstName": "Sora",
+      "lastName": "Aoi",
+      "username": "admin",
+      "password": "admin",
+      "role": "admin"
+    },
+    {
+      "firstName": "Sora",
+      "lastName": "Aoi",
+      "username": "username",
+      "password": "password",
+      "role": "user"
+    },
+    {
+      "firstName": "Sora",
+      "lastName": "Aoi",
+      "username": "username1",
+      "password": "password",
+      "role": "user"
+    },
+    {
+      "firstName": "Sora",
+      "lastName": "Aoi",
+      "username": "username2",
+      "password": "password",
+      "role": "user"
+    },
+    {
+      "firstName": "Sora",
+      "lastName": "Aoi",
+      "username": "username3",
+      "password": "password",
+      "role": "user"
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "username": "test",
+      "password": "test",
+      "role": "user"
+    }
+  ]
+}

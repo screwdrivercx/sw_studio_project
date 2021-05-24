@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using sw_studio_project.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace sw_studio_project.Controllers
 {
@@ -19,16 +21,24 @@ namespace sw_studio_project.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "user")]
         public IActionResult Index()
         {
             var roomObj = Read("./rooms.json");
             var fileData = JsonConvert.DeserializeObject<List<RentLog>>(System.IO.File.ReadAllText("rentFilelog.json"));
             ViewBag.hLog =  fileData;
             return View(roomObj);
+            var rooms = ReadRooms();
+            return View(rooms);
         }
 
-        public IActionResult Privacy()
+        [Authorize(Roles = "admin")]
+        public IActionResult Admin()
         {
+            var users = ReadUsers();
+            return View(users);
+        }
+        public IActionResult History(){
             return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -36,13 +46,24 @@ namespace sw_studio_project.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public Rooms ReadRooms()
         public Root Read(string path)
         {
+            return JsonConvert.DeserializeObject<Rooms>(System.IO.File.ReadAllText("./rooms.json"));
             return JsonConvert.DeserializeObject<Root>(System.IO.File.ReadAllText(path));
         }
-        public void Write(Root model)
+        public void WriteRooms(Rooms model)
         {
             System.IO.File.WriteAllText("./rooms.json", JsonConvert.SerializeObject(model));
+        }
+        public Users ReadUsers()
+        {
+            return JsonConvert.DeserializeObject<Users>(System.IO.File.ReadAllText("./users.json"));
+        }
+        public void WriteUsers(Users model)
+        {
+            System.IO.File.WriteAllText("./users.json", JsonConvert.SerializeObject(model));
         }
         [HttpGet]
         public IActionResult History(){
