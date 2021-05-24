@@ -30,13 +30,7 @@ namespace sw_studio_project.Controllers
             return View(rooms);
         }
 
-        [Authorize(Roles = "admin")]
-    
-        public IActionResult Users()
-        {
-            var rooms = ReadRooms();
-            return View(rooms);
-        }
+
         [Authorize(Roles = "admin")]
         public IActionResult Users(){
             var users = ReadUsers();
@@ -79,7 +73,6 @@ namespace sw_studio_project.Controllers
         }
         [HttpGet]
         [Authorize]
-        [Authorize(Roles = "admin")]
         public IActionResult History(){
             var fileData = JsonConvert.DeserializeObject<List<RentLog>>(System.IO.File.ReadAllText("rentFilelog.json"));
             var httpContext = HttpContext;  
@@ -153,7 +146,19 @@ namespace sw_studio_project.Controllers
             System.IO.File.WriteAllText("rentFilelog.json",JsonConvert.SerializeObject(fileData));
             return RedirectToAction("History");
         }  
-
+        [HttpPost]
+        public IActionResult deleteAdminHistory(string user,string objName,string SDate,int SHour,string EDate, int EHour){
+            var fileData = JsonConvert.DeserializeObject<List<RentLog>>(System.IO.File.ReadAllText("rentFilelog.json"));
+            for (var i = 0 ; i< fileData.Count;i++){
+                if(fileData[i].user == user && fileData[i].objName == objName && fileData[i].SDate == SDate && fileData[i].SHour == SHour && fileData[i].EDate == EDate && fileData[i].EHour == EHour  ){
+                    fileData.RemoveAt(i);
+                    Console.WriteLine("Deleted");
+                    break;
+                }
+            }
+            System.IO.File.WriteAllText("rentFilelog.json",JsonConvert.SerializeObject(fileData));
+            return RedirectToAction("AdminHistory");
+        } 
         [HttpPost]
         public IActionResult EditRoom(int id, string roomName, string roomNumber, string accName, int accNumber){
             Rooms rooms = ReadRooms();

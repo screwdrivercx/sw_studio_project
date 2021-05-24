@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\sw_studio_project.csproj": {}
+    "C:\\Users\\Non\\Documents\\Github\\sw_studio_project\\sw_studio_project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\sw_studio_project.csproj": {
+    "C:\\Users\\Non\\Documents\\Github\\sw_studio_project\\sw_studio_project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\sw_studio_project.csproj",
+        "projectUniqueName": "C:\\Users\\Non\\Documents\\Github\\sw_studio_project\\sw_studio_project.csproj",
         "projectName": "sw_studio_project",
-        "projectPath": "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\sw_studio_project.csproj",
-        "packagesPath": "C:\\Users\\Nai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\obj\\",
+        "projectPath": "C:\\Users\\Non\\Documents\\Github\\sw_studio_project\\sw_studio_project.csproj",
+        "packagesPath": "C:\\Users\\Non\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Non\\Documents\\Github\\sw_studio_project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Nai\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Non\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"

@@ -12,7 +12,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminHistory">Rooms</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Admin">Rooms</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Users">Users</a>
@@ -51,7 +51,7 @@
         <tbody>
             @foreach (var log in @ViewBag.rentLog)
             {  
-                <form method="post" asp-controller='Home' asp-action='deleteHistory'>
+                <form method="post" asp-controller='Home' asp-action='deleteAdminHistory'>
                <tr id=row+@i>
                     <td>
                         @i
