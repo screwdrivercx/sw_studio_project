@@ -90,4 +90,3 @@ C:\Users\Window10Pro\Desktop\T\softStu\sw_studio_project\obj\Debug\net5.0\sw_stu
 C:\Users\Window10Pro\Desktop\T\softStu\sw_studio_project\obj\Debug\net5.0\ref\sw_studio_project.dll
 C:\Users\Window10Pro\Desktop\T\softStu\sw_studio_project\obj\Debug\net5.0\sw_studio_project.pdb
 C:\Users\Window10Pro\Desktop\T\softStu\sw_studio_project\obj\Debug\net5.0\sw_studio_project.genruntimeconfig.cache
-C:\Users\Window10Pro\Desktop\T\softStu\sw_studio_project\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs

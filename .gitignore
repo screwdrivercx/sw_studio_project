@@ -29,9 +29,3 @@ bin/Debug/net5.0/sw_studio_project.runtimeconfig.dev.json
 bin/Debug/net5.0/sw_studio_project.pdb
 bin/Debug/net5.0/sw_studio_project.exe
 bin/Debug/net5.0/sw_studio_project.dll
-obj/Debug/net5.0/sw_studio_project.Views.pdb
-obj/Debug/net5.0/sw_studio_project.Views.dll
-obj/Debug/net5.0/sw_studio_project.RazorCoreGenerate.cache
-obj/Debug/net5.0/sw_studio_project.csproj.FileListAbsolute.txt
-obj/Debug/net5.0/Razor/Views/Home/Privacy.cshtml.g.cs
-obj/Debug/net5.0/Razor/Views/Account/Register.cshtml.g.cs
