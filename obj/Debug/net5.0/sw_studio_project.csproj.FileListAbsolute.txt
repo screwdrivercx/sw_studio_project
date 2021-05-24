@@ -98,3 +98,4 @@ C:\Users\Nai\Documents\GitHub\sw_studio_project\bin\Debug\net5.0\rentFilelog.jso
 C:\Users\Nai\Documents\GitHub\sw_studio_project\obj\Debug\net5.0\Razor\Views\Home\Users.cshtml.g.cs
 C:\Users\Non\Documents\Github\sw_studio_project\obj\Debug\net5.0\Razor\Views\Home\AdminHistory.cshtml.g.cs
 C:\Users\Non\Documents\Github\sw_studio_project\obj\Debug\net5.0\Razor\Views\Home\Users.cshtml.g.cs
+C:\Users\Nai\Documents\GitHub\sw_studio_project\obj\Debug\net5.0\Razor\Views\Home\AdminHistory.cshtml.g.cs

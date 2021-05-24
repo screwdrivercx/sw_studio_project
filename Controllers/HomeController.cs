@@ -27,6 +27,19 @@ namespace sw_studio_project.Controllers
             var fileData = JsonConvert.DeserializeObject<List<RentLog>>(System.IO.File.ReadAllText("rentFilelog.json"));
             ViewBag.hLog =  fileData;
             var rooms = ReadRooms();
+
+            var blacklisted="";
+            ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;  
+                if (null != principal)  
+                {  
+                foreach (Claim claim in principal.Claims)  
+                {  
+                    Console.WriteLine("CLAIM TYPE: " + claim.Type + "; CLAIM VALUE: " + claim.Value + "</br>");  
+                   blacklisted = claim.Value;
+                }  
+                } 
+            Console.WriteLine(blacklisted);
+            ViewBag.blacklisted = blacklisted;
             return View(rooms);
         }
 
@@ -184,7 +197,22 @@ namespace sw_studio_project.Controllers
             if(count<=1)
                 WriteRooms(rooms);
             return RedirectToAction("Admin");
-        } 
+        }
+        [HttpPost]
+        public IActionResult Blacklist(string username){
+            var users = ReadUsers();
+            Console.WriteLine(username);
+            foreach(User user in users.users){
+                if(user.username == username){
+                    if(user.blacklisted == true)
+                        user.blacklisted = false;
+                    else
+                        user.blacklisted = true;
+                }
+            }
+            WriteUsers(users);
+            return RedirectToAction("Users");
+        }
 
     }
     }

@@ -7,6 +7,7 @@ namespace sw_studio_project.Models{
         public string username {get; set;}
         public string password {get; set;}
         public string role {get; set;}
+        public bool blacklisted {get; set;}
 
         public User(){
 

@@ -47,7 +47,8 @@ namespace sw_studio_project.Controllers
                 if(user.username==username && user.password==password){
                     identity = new ClaimsIdentity(new[]{
                         new Claim(ClaimTypes.Name, username),
-                        new Claim(ClaimTypes.Role, user.role)
+                        new Claim(ClaimTypes.Role, user.role),
+                        new Claim(ClaimTypes.UserData, user.blacklisted.ToString())
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
                     isAuthenticate = true;
                     isAdmin = user.role=="admin" ? true : false;
@@ -79,7 +80,8 @@ namespace sw_studio_project.Controllers
                 lastName = lastName, 
                 username = username, 
                 password = password,
-                role = "user"
+                role = "user",
+                blacklisted = false
             };
             var Users = ReadUsers();
             Users.users.Add(newUser);

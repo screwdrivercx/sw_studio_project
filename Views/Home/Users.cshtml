@@ -44,6 +44,7 @@
                 <th>Last Name</th>
                 <th>Username</th>
                 <th>Role</th>
+                <th>status</th>
                 <th></th>
             </tr>
         </thead>
@@ -66,8 +67,30 @@
                     <td>
                         @user.role
                     </td>
+                    @{
+                        var yourStyle = "";
+                        var yourStyle2 = "";
+                        var yourStyle3 = "";
+                        if(user.blacklisted)
+                        {
+                            yourStyle = "color:red;";
+                            yourStyle2 = "display:none";
+                            yourStyle3 = "display:block";
+                            
+                        }
+                        else
+                        {
+                            yourStyle = "color:green;";
+                            yourStyle2 = "display:block";
+                            yourStyle3 = "display:none";
+                        }
+                    }
                     <td>
-                        <button class="btn btn-danger">blacklist</button>
+                        <span style="@yourStyle">●</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" style="@yourStyle2" onclick="toggle('@user.username')">blacklist</button>
+                        <button class="btn btn-sm btn-danger" style="@yourStyle3" onclick="toggle('@user.username')">unblacklist</button>
                     </td>
                     
                 </tr>
@@ -77,4 +100,19 @@
         
     </table>
 </div>
+
+<script>
+    function httpPost(theUrl)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "POST", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+    function toggle(username){
+        var url = `https://localhost:5001/Home/Blacklist/?username=${username}`
+        var res = httpPost(url);
+        location.reload();
+    }
+</script>
 

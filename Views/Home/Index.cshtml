@@ -2,6 +2,17 @@
 @{
     ViewData["Title"] = "Home";
 }
+@{
+    var disabled = "";
+    var display = "";
+    if(ViewBag.blacklisted=="True"){
+        disabled = "disabled";
+        display = "display:block;";
+    }else{
+        disabled = "";
+        display = "display:none;";
+    }
+}
 <header>
        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -63,14 +74,16 @@
                         @room.accNumber
                     </td>
                     <td>
-                        <button class="btn btn-success" onclick="rent(this)"value ="@room.accName" number=@room.accNumber >เลือก</button>
+                        <button class="btn btn-success" onclick="rent(this)"value ="@room.accName" number=@room.accNumber @disabled>เลือก</button>
                     </td>   
                 </tr>
             }
         </tbody>
         
     </table>
-
+<div class="text-center" style=@display>
+    <h1 class="text-danger mt-5">You are in our website's blacklist. <br>Please contact admin for more information.</h1>
+</div>
 </div>
 <div id =  'bg-timeline' class = 'bg-timeline'>
 <form method='post' asp-controller='Home' asp-action='History' class = 'timeline' onsubmit="return checkSubmit()" >
@@ -134,7 +147,7 @@
     })*/
     var popup= document.getElementById("bg-timeline");
     function rent(obj){
-        document.getElementsByClassName('rentHeader')[0].innerHTML += " "+obj.getAttribute('value');
+        document.getElementsByClassName('rentHeader')[0].innerHTML = "โปรดระบุเวลาที่จะใช้งาน "+obj.getAttribute('value');
         document.getElementById('hidden').setAttribute('value',obj.getAttribute('value'))
         document.getElementById('hidden').setAttribute('number',obj.getAttribute('number'))
         popup.style.display ="block"
@@ -144,7 +157,7 @@
             popup.style.display = "none";
         }
     }
-    function httpGet(theUrl,date)
+    function httpGet(theUrl)
     {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
