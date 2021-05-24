@@ -21,16 +21,20 @@ namespace sw_studio_project.Controllers
             _logger = logger;
         }
 
-        [Authorize]
+        [Authorize(Roles = "user")]
         public IActionResult Index()
         {
-            var rooms = Read();
+            var rooms = ReadRooms();
             return View(rooms);
         }
 
         [Authorize(Roles = "admin")]
-        public IActionResult Privacy()
+        public IActionResult Admin()
         {
+            var users = ReadUsers();
+            return View(users);
+        }
+        public IActionResult History(){
             return View();
         }
 
@@ -40,13 +44,21 @@ namespace sw_studio_project.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public Rooms Read()
+        public Rooms ReadRooms()
         {
             return JsonConvert.DeserializeObject<Rooms>(System.IO.File.ReadAllText("./rooms.json"));
         }
-        public void Write(Rooms model)
+        public void WriteRooms(Rooms model)
         {
             System.IO.File.WriteAllText("./rooms.json", JsonConvert.SerializeObject(model));
+        }
+        public Users ReadUsers()
+        {
+            return JsonConvert.DeserializeObject<Users>(System.IO.File.ReadAllText("./users.json"));
+        }
+        public void WriteUsers(Users model)
+        {
+            System.IO.File.WriteAllText("./users.json", JsonConvert.SerializeObject(model));
         }
     }
 }

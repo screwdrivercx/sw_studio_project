@@ -40,7 +40,8 @@ namespace sw_studio_project.Controllers
 
             ClaimsIdentity identity = null;
             bool isAuthenticate = false;
-            var Users = Read();
+            bool isAdmin = false;
+            var Users = ReadUsers();
 
             foreach(var user in Users.users){
                 if(user.username==username && user.password==password){
@@ -49,13 +50,17 @@ namespace sw_studio_project.Controllers
                         new Claim(ClaimTypes.Role, user.role)
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
                     isAuthenticate = true;
+                    isAdmin = user.role=="admin" ? true : false;
                 }
             }
 
             if(isAuthenticate){
                 var principle = new ClaimsPrincipal(identity);
                 var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
-                return RedirectToAction("index","Home");
+                if(!isAdmin)
+                    return RedirectToAction("index","Home");
+                else    
+                    return RedirectToAction("Admin","Home");
             }
             return View();
         }
@@ -76,9 +81,9 @@ namespace sw_studio_project.Controllers
                 password = password,
                 role = "user"
             };
-            var Users = Read();
+            var Users = ReadUsers();
             Users.users.Add(newUser);
-            Write(Users);
+            WriteUsers(Users);
 
             return RedirectToAction("Login","Account");
         }
@@ -89,11 +94,11 @@ namespace sw_studio_project.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public Users Read()
+        public Users ReadUsers()
         {
             return JsonConvert.DeserializeObject<Users>(System.IO.File.ReadAllText("./users.json"));
         }
-        public void Write(Users model)
+        public void WriteUsers(Users model)
         {
             System.IO.File.WriteAllText("./users.json", JsonConvert.SerializeObject(model));
         }

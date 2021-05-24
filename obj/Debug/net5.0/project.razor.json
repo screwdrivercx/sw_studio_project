@@ -15629,6 +15629,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\Views\\Home\\History.cshtml",
+      "TargetPath": "Views\\Home\\History.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -15639,11 +15644,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
@@ -15651,6 +15651,11 @@
     {
       "FilePath": "c:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\Views\\Account\\Login.cshtml",
       "TargetPath": "Views\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\Views\\Home\\Admin.cshtml",
+      "TargetPath": "Views\\Home\\Admin.cshtml",
       "FileKind": "mvc"
     },
     {
