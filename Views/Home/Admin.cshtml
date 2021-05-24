@@ -1,10 +1,22 @@
-@model Users
+@model Rooms
 @{
-    ViewData["Title"] = "Admin Home";
-    var i = 1;
+    ViewData["Title"] = "Home";
 }
+<style>
+    .timeline-big{
+    margin: auto;
+    background-color: white;
+    display: flex;
+    width: 70vw;
+    height: 50vh;
+    flex-direction:column;
+    justify-content: space-around;
+    border-radius: 12px;
+    padding: 20px;
+}
+</style>
 <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+       <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Admin">sw studio</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -14,7 +26,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Admin">Users</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Admin">Rooms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Users">Users</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="History">History</a>
@@ -29,49 +44,105 @@
                 </div>
             </div>
         </nav>
-    </header>
 
+</div>
 <div class="container my-5">
-    <h1 class="display-4">User List</h1>
+    <h1 class="display-4">Room List</h1>
     <table class="table mt-4">
         <thead>
             <tr>
                 <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>Role</th>
+                <th>room</th>
+                <th>room number</th>
+                <th>accessory</th>
+                <th>count</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Model.users)
+            @foreach (var room in Model.rooms)
             {
                <tr>
                     <td>
-                        @i
+                        @room.id
                     </td>
                     <td>
-                        @user.firstName
+                        @room.name
                     </td>
                     <td>
-                        @user.lastName
+                        @room.number
                     </td>
                     <td>
-                        @user.username
+                        @room.accName
                     </td>
                     <td>
-                        @user.role
+                        @room.accNumber
                     </td>
                     <td>
-                        <button class="btn btn-danger">blacklist</button>
-                    </td>
-                    
+                        <button class="btn btn-primary" onclick="edit('@room.id','@room.name', '@room.number', '@room.accName', '@room.accNumber')">Edit</button>
+                    </td>   
                 </tr>
-                i+=1;
             }
         </tbody>
         
     </table>
 </div>
 
+<div id =  'bg-timeline' class = 'bg-timeline'>
+<form class = 'timeline-big' method='post' asp-controller='Home' asp-action='EditRoom' onsubmit="return checkForm()" >
+    <h4>Edit Room</h4>
+    <hr>
+    <input type="hidden" id="id" name="id">
+    <div class="form-group">
+        <label for="roomName">Room Name</label>
+        <input type="text" class="form-control" id="roomName" name="roomName"/>
+    </div>
+    <div class="form-group">
+        <label for="firstName">Room Number</label>
+        <input type="text" class="form-control" id="roomNumber" name="roomNumber"/>
+    </div>
+    <div class="form-group">
+        <label for="firstName">Accessory Name</label>
+        <input type="text" class="form-control" id="accName" name="accName"/>
+    </div>
+    <div class="form-group">
+        <label for="firstName">Accessory Count</label>
+        <input type="number" class="form-control" id="accNumber" name="accNumber"/>
+    </div>
+    <div class="form-group">
+        <button type="submit" class= 'btn btn-success'>Save</button>
+    </div>
+</form>
+</div>
+
+<script>
+    var popup= document.getElementById("bg-timeline");
+
+    function edit(id, roomName, roomNumber, accName, accNumber){
+        document.getElementById('id').value =  id;
+        document.getElementById('roomName').value =  roomName;
+        document.getElementById('roomNumber').value = roomNumber;
+        document.getElementById('accName').value = accName;
+        document.getElementById('accNumber').value = accNumber;
+        popup.style.display ="block"
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("bg-timeline")) {
+            popup.style.display = "none";
+        }
+    }
+
+    function checkForm(){
+        if(document.getElementById('roomName').value == "" ||
+        document.getElementById('roomNumber').value == "" ||
+        document.getElementById('accName').value == "" ||
+        document.getElementById('accNumber').value < 0
+        ){
+            alert("Invalid Input. Input can't be empty or less than 0. \nPlease try again.");
+            return false;
+        }
+        alert("Updated")
+        return true;
+    }
+</script>

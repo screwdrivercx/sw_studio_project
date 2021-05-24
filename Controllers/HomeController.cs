@@ -33,6 +33,11 @@ namespace sw_studio_project.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Admin()
         {
+            var rooms = ReadRooms();
+            return View(rooms);
+        }
+        [Authorize(Roles = "admin")]
+        public IActionResult Users(){
             var users = ReadUsers();
             return View(users);
         }
@@ -61,12 +66,15 @@ namespace sw_studio_project.Controllers
             System.IO.File.WriteAllText("./users.json", JsonConvert.SerializeObject(model));
         }
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public IActionResult History(){
             var fileData = JsonConvert.DeserializeObject<List<RentLog>>(System.IO.File.ReadAllText("rentFilelog.json"));
             ViewBag.rentLog = fileData;
             return View();
         }
+
         [HttpPost]
+        [Authorize]
         public IActionResult History(string objName,string timeStart,string timeEnd,int timeS, int timeE){
             var data = new RentLog();
             data.user= "joJo";
@@ -93,7 +101,34 @@ namespace sw_studio_project.Controllers
             }
             System.IO.File.WriteAllText("rentFilelog.json",JsonConvert.SerializeObject(fileData));
             return RedirectToAction("History");
-        }   
+        }  
+
+        [HttpPost]
+        public IActionResult EditRoom(int id, string roomName, string roomNumber, string accName, int accNumber){
+            Rooms rooms = ReadRooms();
+            Console.WriteLine(id.ToString()+ roomName+ roomNumber + accName+ accNumber.ToString());
+            if(roomName == "" || roomNumber == "" || accName == "" || accNumber<0)
+                return RedirectToAction("Admin");
+
+            foreach(Room room in rooms.rooms){
+                if(room.id == id){
+                    room.name = roomName;
+                    room.number = roomNumber;
+                    room.accName = accName;
+                    room.accNumber = accNumber;
+                }
+            }
+
+            var count = 0;
+            foreach(Room room in rooms.rooms){
+                if(room.accName == accName){
+                    count++;
+                }
+            }
+            if(count<=1)
+                WriteRooms(rooms);
+            return RedirectToAction("Admin");
+        } 
 
     }
     }

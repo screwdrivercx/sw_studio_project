@@ -1,7 +1,6 @@
 ﻿@model Rooms
 @{
     ViewData["Title"] = "Home";
-    var i = 1;
 }
 <header>
        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -49,7 +48,7 @@
             {
                <tr>
                     <td>
-                        @i
+                        @room.id
                     </td>
                     <td>
                         @room.name
@@ -67,7 +66,6 @@
                         <button class="btn btn-success" onclick="rent(this)"value ="@room.accName" number=@room.accNumber >เลือก</button>
                     </td>   
                 </tr>
-                i+=1;
             }
         </tbody>
         
@@ -96,7 +94,7 @@
                 <label class="for-hourBtE" for=E+@j>@j</label>
             }
         </div>
-         <input type="submit" class= 'submit'/>
+         <button class="btn btn-success">จอง</button>
 </form>
 </div>
 <script>
