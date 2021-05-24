@@ -91,3 +91,7 @@
 .dateE label:hover {
     background-color: lightpink;
   }
+.tableOverflow{
+    overflow-x: auto;
+    height: 70vh;
+}
