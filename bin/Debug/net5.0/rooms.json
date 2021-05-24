@@ -1,22 +1,32 @@
 {
     "rooms":[{
         "name":"ห้องปฏิบัติการ xo",
-        "number" : "801"
+        "number" : "801",
+        "accName": "objA",
+        "accNumber" : 80
     },
     {
         "name":"ห้องปฏิบัติการ as",
-        "number" : "811"
+        "number" : "811",
+        "accName": "objB",
+        "accNumber" : 4
     },
     {
         "name":"ห้องปฏิบัติการ bb",
-        "number" : "701"
+        "number" : "701",
+        "accName": "objC",
+        "accNumber" : 71
     },
     {
         "name":"ห้องปฏิบัติการ dot",
-        "number" : "502"
+        "number" : "502",
+        "accName": "objD",
+        "accNumber" : 52
     },
     {
         "name":"ห้องปฏิบัติการ net",
-        "number" : "302"
+        "number" : "302",
+        "accName": "objE",
+        "accNumber" : 32
     }]
 }

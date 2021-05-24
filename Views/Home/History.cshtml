@@ -1,0 +1,64 @@
+@{
+    var i =0;
+}
+ <div class="container my-5">
+    <h1 class="display-4">History</h1>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                 <th>#</th>
+                <th>user</th>
+                <th>objName</th>
+                <th>Start</th>
+                <th></th>
+                <th>End</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in @ViewBag.rentLog)
+            {  
+                <form method="post" asp-controller='Home' asp-action='deleteHistory'>
+               <tr id=row+@i>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @log.user
+                        <input type="hidden" name='user' value =@log.user>
+                    </td>
+                     <td>
+                        @log.objName
+                        <input type="hidden" name='objName' value =@log.objName>
+                    </td>
+                    <td>
+                        @log.SDate
+                        <input type="hidden" name='SDate' value =@log.SDate>
+                    </td>
+                    <td>
+                        @log.SHour:00
+                        <input type="hidden" name='SHour' value =@log.SHour>
+                    </td>
+                    <td>
+                        @log.EDate 
+                        <input type="hidden" name='EDate' value =@log.EDate>
+                    </td>
+                    <td>
+                        @log.EHour:00
+                        <input type="hidden" name='EHour' value =@log.EHour>
+                    </td>   
+                    <td>
+                        <button class="btn btn-danger"   a type = 'submit' >Delete</button>
+                            
+                    </td> 
+                </tr>
+                </form>
+                i+=1;
+            }
+        </tbody>
+        
+    </table>
+    <script>
+
+    </script>
+</div>

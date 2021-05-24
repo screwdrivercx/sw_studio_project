@@ -3,7 +3,7 @@
     ViewData["Title"] = "Home";
     var i = 1;
 }
-
+<body>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
@@ -17,6 +17,8 @@
                 <th>#</th>
                 <th>room</th>
                 <th>room number</th>
+                <th>accessory</th>
+                <th>count</th>
                 <th></th>
             </tr>
         </thead>
@@ -34,14 +36,124 @@
                         @room.number
                     </td>
                     <td>
-                        <button class="btn btn-success">เลือก</button>
+                        @room.accName
                     </td>
-                    
+                    <td>
+                        @room.accNumber
+                    </td>
+                    <td>
+                        <button class="btn btn-success" onclick="rent(this)"value ="@room.accName" number=@room.accNumber >เลือก</button>
+                    </td>   
                 </tr>
                 i+=1;
             }
         </tbody>
         
     </table>
-</div>
 
+</div>
+<div id =  'bg-timeline' class = 'bg-timeline'>
+<form method='post' asp-controller='Home' asp-action='History' class = 'timeline' onsubmit="return checkSubmit()" >
+    <span class='rentHeader' name = 'objName'  >โปรดระบุเวลาที่จะใช้งาน</span>
+    <input type ='hidden' id='hidden' name = 'objName' value="Submit" number =12>
+    <div class  = 'dateS'>
+        <input id = 'time-start' name='timeStart' type = "date" > <br/> 
+        @for(var j = 0 ; j<24;j++){
+
+            <input type="radio" name= 'timeS' class = 'hourBtS' id=S+@j  value=@j  disabled=false >
+            <label class="for-hourBtS" for=S+@j>@j</label>
+        }
+        <br/> 
+        </div>
+
+        <div class  = 'dateE'>
+            <input id = 'time-end' name='timeEnd' type = "date"> 
+            <br/> 
+            @for(var j = 0 ; j<24;j++){
+                <input type="radio" name= 'timeE' class = 'hourBtE' id=E+@j value=@j  disabled=false>
+                <label class="for-hourBtE" for=E+@j>@j</label>
+            }
+        </div>
+         <input type="submit" class= 'submit'/>
+</form>
+</div>
+<script>
+    document.getElementById('time-start').addEventListener('input',function(e){
+           var objName = document.getElementById('hidden').getAttribute('value')
+           var a =  httpGet(`https://localhost:5001/CheckLog/checkDate/?Date=${e.target.value}&objName=${objName}`)
+           var timeNumber = a.substring(1,a.length-1).split(",");
+           var objNumber = document.getElementById('hidden').getAttribute('number');
+           for(let k =0; k<24;k++){
+               if(timeNumber[k] >= objNumber ){
+                    document.getElementById(`S+${k}`).disabled = true;
+                    document.getElementById(`S+${k}`).checked = false;
+               }
+               else{
+                   document.getElementById(`S+${k}`).disabled = false;
+               }
+           }
+    })
+    document.getElementById('time-end').addEventListener('input',function(e){
+           var objName = document.getElementById('hidden').getAttribute('value')
+           var a =  httpGet(`https://localhost:5001/CheckLog/checkDate/?Date=${e.target.value}&objName=${objName}`)
+           var timeNumber = a.substring(1,a.length-1).split(",");
+           var objNumber = document.getElementById('hidden').getAttribute('number');
+           for(let k =0; k<24;k++){
+               if(timeNumber[k] >= objNumber ){
+                    document.getElementById(`E+${k}`).disabled = true;
+                    document.getElementById(`E+${k}`).checked = false;
+               }
+               else{
+                   document.getElementById(`E+${k}`).disabled = false;
+               }
+           }
+
+    })
+    /*document.getElementById('time-start').addEventListener('input',function(e){
+           var a =  httpGet(`https://localhost:5001/CheckLog/checkEnd/?Date=${e.target.value}`)
+    })*/
+    var popup= document.getElementById("bg-timeline");
+    function rent(obj){
+        document.getElementsByClassName('rentHeader')[0].innerHTML += " "+obj.getAttribute('value');
+        document.getElementById('hidden').setAttribute('value',obj.getAttribute('value'))
+        document.getElementById('hidden').setAttribute('number',obj.getAttribute('number'))
+        popup.style.display ="block"
+    }
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("bg-timeline")) {
+            popup.style.display = "none";
+        }
+    }
+    function httpGet(theUrl,date)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+    //string startD , int startH, string endD, int endH,int objNumber , string objName
+    function checkSubmit(){
+        //////
+        let dateS  = document.getElementById('time-start').value
+        let dateE  = document.getElementById('time-end').value
+        let radioS = $("input[type='radio'][name='timeS']:checked").val();
+        let radioE = $("input[type='radio'][name='timeE']:checked").val();
+        let objNumber =  document.getElementById('hidden').getAttribute('number')
+        let objName =  document.getElementById('hidden').getAttribute('value')
+        if(dateS === "" || dateE === "" || (dateE == dateS && radioE< radioS ) ){
+           alert("Invalid format")
+            return false
+        }
+        let a  = httpGet(`https://localhost:5001/CheckLog/checkSubmit/?startD=${dateS}&startH=${radioS}&endD=${dateE}&endH=${radioE}&objNumber=${objNumber}&objName=${objName}`)
+        if(a == "true"){
+            alert("Success")
+            return true;
+        }
+        else 
+            alert("Fail")
+            return false;
+         
+    }
+
+</script>
+</body>
