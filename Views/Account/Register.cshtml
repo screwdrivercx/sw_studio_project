@@ -19,10 +19,20 @@
 
 </style>
 
+<script type="text/javascript">
+function validateForm() {
+  var psw = document.forms["regis"]["password"].value;
+  if (psw.length < 8) {
+    alert("password is too short 😢");
+    return false;
+  }
+}
+</script>
+
 <div class="card mt-5 col-md-6 offset-md-3">
     <h5 class="card-header">Create account</h5>
     <div class="card-body">
-        <form asp-action="Register" method="post">
+        <form name="regis" asp-action="Register" method="post" onSubmit="return validateForm()">
             <div class="form-group">
                 <label for="firstName">First Name</label>
                 <input type="text" class="form-control" id="firstName" name="firstName" required/>
