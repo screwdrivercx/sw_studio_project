@@ -9,7 +9,7 @@ using sw_studio_project.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
+using System.Security.Claims;
 namespace sw_studio_project.Controllers
 {
     public class HomeController : Controller
@@ -31,10 +31,17 @@ namespace sw_studio_project.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        public IActionResult Admin()
+    
+        public IActionResult Users()
         {
             var users = ReadUsers();
             return View(users);
+        }
+         [Authorize(Roles = "admin")]
+        public IActionResult Admin()
+        {
+            var rooms = ReadRooms();
+            return View(rooms);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -43,7 +50,12 @@ namespace sw_studio_project.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        
+        public IActionResult AdminHistory(){
+            var fileData = JsonConvert.DeserializeObject<List<RentLog>>(System.IO.File.ReadAllText("rentFilelog.json"));
+            ViewBag.rentLog = fileData;
+            fileData.Reverse();
+            return View();
+        }
         public Rooms ReadRooms()
         {
             return JsonConvert.DeserializeObject<Rooms>(System.IO.File.ReadAllText("./rooms.json"));
@@ -61,15 +73,47 @@ namespace sw_studio_project.Controllers
             System.IO.File.WriteAllText("./users.json", JsonConvert.SerializeObject(model));
         }
         [HttpGet]
+        [Authorize]
         public IActionResult History(){
             var fileData = JsonConvert.DeserializeObject<List<RentLog>>(System.IO.File.ReadAllText("rentFilelog.json"));
+            var httpContext = HttpContext;  
+            
+            var username ="";
+            ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;  
+                if (null != principal)  
+                {  
+                foreach (Claim claim in principal.Claims)  
+                {  
+                    //Console.WriteLine("CLAIM TYPE: " + claim.Type + "; CLAIM VALUE: " + claim.Value + "</br>");  
+                   username = claim.Value;
+                   break;
+                }  
+                }  
+            for(var i =0 ;i<fileData.Count;i++){
+                if(fileData[i].user != username){
+                    fileData.RemoveAt(i);
+                    i-=1;
+                }
+            }
+            fileData.Reverse();
             ViewBag.rentLog = fileData;
             return View();
         }
         [HttpPost]
         public IActionResult History(string objName,string timeStart,string timeEnd,int timeS, int timeE){
             var data = new RentLog();
-            data.user= "joJo";
+
+            ClaimsPrincipal principal = HttpContext.User as ClaimsPrincipal;  
+                if (null != principal)  
+                {  
+                foreach (Claim claim in principal.Claims)  
+                {  
+                    //Console.WriteLine("CLAIM TYPE: " + claim.Type + "; CLAIM VALUE: " + claim.Value + "</br>");  
+                   data.user = claim.Value;
+                   break;
+                }  
+                } 
+                 
             data.objName = objName;
             data.SDate =timeStart;
             data.SHour = timeS;
@@ -78,6 +122,13 @@ namespace sw_studio_project.Controllers
             var fileData = JsonConvert.DeserializeObject<List<RentLog>>(System.IO.File.ReadAllText("rentFilelog.json"));
             fileData.Add(data);
             System.IO.File.WriteAllText("rentFilelog.json",JsonConvert.SerializeObject(fileData));
+            for(var i =0 ;i<fileData.Count;i++){
+                if(fileData[i].user != data.user){
+                    fileData.RemoveAt(i);
+                    i-=1;
+                }
+            }
+            fileData.Reverse();
             ViewBag.rentLog = fileData;
             return View();
         }

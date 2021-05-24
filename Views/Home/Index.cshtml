@@ -162,7 +162,7 @@
         let radioE = $("input[type='radio'][name='timeE']:checked").val();
         let objNumber =  document.getElementById('hidden').getAttribute('number')
         let objName =  document.getElementById('hidden').getAttribute('value')
-        if(dateS === "" || dateE === "" || (dateE == dateS && radioE< radioS ) ){
+        if(dateS === "" || dateE === "" || (dateE == dateS && parseInt(radioE)< parseInt(radioS) ) ){
            alert("Invalid format")
             return false
         }
@@ -174,7 +174,19 @@
         else 
             alert("Fail")
             return false;
-         
     }
+    function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+    return [year, month, day].join('-');
+    }
+    document.getElementsByName('timeStart')[0].setAttribute("min", formatDate(Date.now()));
+    document.getElementsByName('timeEnd')[0].setAttribute("min", formatDate(Date.now()));
 </script>

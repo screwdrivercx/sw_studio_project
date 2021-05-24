@@ -53,10 +53,10 @@ namespace sw_studio_project.Controllers
                     isAdmin = user.role=="admin" ? true : false;
                 }
             }
-
             if(isAuthenticate){
                 var principle = new ClaimsPrincipal(identity);
                 var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
+                ViewBag.username =  username;
                 if(!isAdmin)
                     return RedirectToAction("index","Home");
                 else    

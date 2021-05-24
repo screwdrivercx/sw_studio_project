@@ -1,0 +1,81 @@
+@model Users
+@{
+    ViewData["Title"] = "Admin Home";
+    var i = 1;
+}
+<header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Admin">sw studio</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Admin">Rooms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Users">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminHistory">History</a>
+                        </li>
+
+                        <li class="nav-item ml-auto">
+                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <p></p>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<div class="container my-5">
+    <h1 class="display-4">User List</h1>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.users)
+            {
+               <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @user.firstName
+                    </td>
+                    <td>
+                        @user.lastName
+                    </td>
+                    <td>
+                        @user.username
+                    </td>
+                    <td>
+                        @user.role
+                    </td>
+                    <td>
+                        <button class="btn btn-danger">blacklist</button>
+                    </td>
+                    
+                </tr>
+                i+=1;
+            }
+        </tbody>
+        
+    </table>
+</div>
+

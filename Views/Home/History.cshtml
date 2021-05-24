@@ -1,5 +1,5 @@
 @{
-    var i =0;
+    var i =1;
 }
 <header>
        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -30,7 +30,8 @@
     </header>
  <div class="container my-5">
     <h1 class="display-4">History</h1>
-    <table class="table mt-4">
+    <div class= 'tableOverflow' >
+    <table class=" table  table-hover mt-4">
         <thead>
             <tr>
                  <th>#</th>
@@ -75,8 +76,10 @@
                         <input type="hidden" name='EHour' value =@log.EHour>
                     </td>   
                     <td>
-                        <button class="btn btn-danger"   a type = 'submit' >Delete</button>
-                            
+                            @if(DateTime.ParseExact(log.EDate,"yyyy-MM-dd",null) >= DateTime.Now ){
+                             <button class="btn btn-danger"    type = 'submit' >Delete</button>
+                            }
+                        
                     </td> 
                 </tr>
                 </form>
@@ -85,6 +88,7 @@
         </tbody>
         
     </table>
+    </div>
     <script>
 
     </script>

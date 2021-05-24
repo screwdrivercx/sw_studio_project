@@ -1,7 +1,5 @@
-@model Rooms
 @{
-    ViewData["Title"] = "Home Admin";
-    var i = 1;
+    var i =1 ;
 }
 <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -14,7 +12,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Admin">Rooms</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminHistory">Rooms</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Users">Users</a>
@@ -34,48 +32,66 @@
             </div>
         </nav>
     </header>
-
-<div class="container my-5">
-    <h1 class="display-4">Room List</h1>
-    <table class="table mt-4">
+    
+ <div class="container my-5">
+    <h1 class="display-4">History</h1>
+    <div class= 'tableOverflow' >
+    <table class="table table-hover mt-4">
         <thead>
             <tr>
-                <th>#</th>
-                <th>room</th>
-                <th>room number</th>
-                <th>accessory</th>
-                <th>count</th>
+                 <th>#</th>
+                <th>user</th>
+                <th>objName</th>
+                <th>Start</th>
+                <th></th>
+                <th>End</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var room in Model.rooms)
-            {
-               <tr>
+            @foreach (var log in @ViewBag.rentLog)
+            {  
+                <form method="post" asp-controller='Home' asp-action='deleteHistory'>
+               <tr id=row+@i>
                     <td>
                         @i
                     </td>
                     <td>
-                        @room.name
+                        @log.user
+                        <input type="hidden" name='user' value =@log.user>
+                    </td>
+                     <td>
+                        @log.objName
+                        <input type="hidden" name='objName' value =@log.objName>
                     </td>
                     <td>
-                        @room.number
+                        @log.SDate
+                        <input type="hidden" name='SDate' value =@log.SDate>
                     </td>
                     <td>
-                        @room.accName
+                        @log.SHour:00
+                        <input type="hidden" name='SHour' value =@log.SHour>
                     </td>
                     <td>
-                        @room.accNumber
+                        @log.EDate 
+                        <input type="hidden" name='EDate' value =@log.EDate>
                     </td>
                     <td>
-                        <input type='number' style="width:70px ;text-align:center;" value =@room.accNumber>
+                        @log.EHour:00
+                        <input type="hidden" name='EHour' value =@log.EHour>
                     </td>   
+                    <td>
+                            @if(DateTime.ParseExact(log.EDate,"yyyy-MM-dd",null) >= DateTime.Now ){
+                             <button class="btn btn-danger"    type = 'submit' >Delete</button>
+                            }
+                    </td> 
                 </tr>
+                </form>
                 i+=1;
             }
         </tbody>
+        
     </table>
-    <button> Save</button>
+    </div>
 
 </div>
-
