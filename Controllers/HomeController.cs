@@ -24,10 +24,8 @@ namespace sw_studio_project.Controllers
         [Authorize(Roles = "user")]
         public IActionResult Index()
         {
-            var roomObj = Read("./rooms.json");
             var fileData = JsonConvert.DeserializeObject<List<RentLog>>(System.IO.File.ReadAllText("rentFilelog.json"));
             ViewBag.hLog =  fileData;
-            return View(roomObj);
             var rooms = ReadRooms();
             return View(rooms);
         }
@@ -38,20 +36,17 @@ namespace sw_studio_project.Controllers
             var users = ReadUsers();
             return View(users);
         }
-        public IActionResult History(){
-            return View();
-        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        
         public Rooms ReadRooms()
-        public Root Read(string path)
         {
             return JsonConvert.DeserializeObject<Rooms>(System.IO.File.ReadAllText("./rooms.json"));
-            return JsonConvert.DeserializeObject<Root>(System.IO.File.ReadAllText(path));
         }
         public void WriteRooms(Rooms model)
         {

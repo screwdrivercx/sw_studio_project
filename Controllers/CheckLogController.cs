@@ -67,7 +67,7 @@ namespace sw_studio_project.Controllers
             var fileData = JsonConvert.DeserializeObject<List<RentLog>>(System.IO.File.ReadAllText("rentFilelog.json"));
             var chStart = DateTime.ParseExact(startD,"yyyy-MM-dd",null);
             var chEnd = DateTime.ParseExact(endD,"yyyy-MM-dd",null);
-            while(chStart.ToString("yyyy-MM-dd") != chEnd.ToString("yyyy-MM-dd")){
+            while(chStart <= chEnd){
                 var  a= checkDate(chStart.ToString("yyyy-MM-dd"),objName);
                 for (var i =0 ; i< a.Count; i++)
                 {   

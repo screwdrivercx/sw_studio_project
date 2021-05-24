@@ -4,7 +4,7 @@
     var i = 1;
 }
 <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+       <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">sw studio</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -16,14 +16,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="History">History</a>
+                        </li>
                         <li class="nav-item ml-auto">
                              <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">Log Out</a>
                         </li>
                     </ul>
                 </div>
+                <div>
+                    <p></p>
+                </div>
             </div>
         </nav>
-    </header>
 
 </div>
 <div class="container my-5">
@@ -173,4 +178,3 @@
     }
 
 </script>
-</body>
