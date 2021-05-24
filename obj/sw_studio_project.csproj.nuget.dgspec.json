@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\sw_studio_project.csproj": {}
+    "C:\\Users\\Window10Pro\\Desktop\\T\\softStu\\sw_studio_project\\sw_studio_project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\sw_studio_project.csproj": {
+    "C:\\Users\\Window10Pro\\Desktop\\T\\softStu\\sw_studio_project\\sw_studio_project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\sw_studio_project.csproj",
+        "projectUniqueName": "C:\\Users\\Window10Pro\\Desktop\\T\\softStu\\sw_studio_project\\sw_studio_project.csproj",
         "projectName": "sw_studio_project",
-        "projectPath": "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\sw_studio_project.csproj",
-        "packagesPath": "C:\\Users\\Nai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nai\\Documents\\GitHub\\sw_studio_project\\obj\\",
+        "projectPath": "C:\\Users\\Window10Pro\\Desktop\\T\\softStu\\sw_studio_project\\sw_studio_project.csproj",
+        "packagesPath": "C:\\Users\\Window10Pro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Window10Pro\\Desktop\\T\\softStu\\sw_studio_project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Nai\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Window10Pro\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
